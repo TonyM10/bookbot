@@ -14,19 +14,24 @@ def get_book_text(file_path):
         sys.exit(1)
 
 def main():
-    book_path = "books/frankenstein.txt"
-    frankenstein = get_book_text(book_path)
+    if len(sys.argv) > 1:
+        book_path = sys.argv[1]
+    else:
+        print("Usage: python3 main.py <path_to_book>")
+        sys.exit(1)
+
+    book = get_book_text(book_path)
     print("============ BOOKBOT ============")
     print(f"Analyzing book found at {book_path}...")
     print("---------------------------------") 
 
     print("----------- Word Count ----------")
-    frankenstein_word_count = word_count(frankenstein)
-    print(f"Found {frankenstein_word_count} total words")
+    book_word_count = word_count(book)
+    print(f"Found {book_word_count} total words")
     print("---------------------------------")
 
     print("--------- Character Count -------")
-    frankenstein_char_count = character_count(frankenstein)
+    frankenstein_char_count = character_count(book)
     sorted_chars = sort_character_count(frankenstein_char_count)
 
     for item in sorted_chars:
